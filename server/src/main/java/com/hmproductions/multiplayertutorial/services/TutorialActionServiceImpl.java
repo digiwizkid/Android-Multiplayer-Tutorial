@@ -4,6 +4,9 @@ import com.hmproductions.multiplayertutorial.TutorialActionServiceGrpc;
 import com.hmproductions.multiplayertutorial.actions.GetScore.GetScoreResponse;
 import com.hmproductions.multiplayertutorial.actions.GetScore.GetScoreRequest;
 import com.hmproductions.multiplayertutorial.actions.GetScore.GetScoreResponse.StatusCode;
+
+import java.util.Random;
+
 import io.grpc.stub.StreamObserver;
 
 import static com.hmproductions.multiplayertutorial.utils.Constants.MAX_PLAYERS;
@@ -13,7 +16,7 @@ public class TutorialActionServiceImpl extends TutorialActionServiceGrpc.Tutoria
     @Override
     public void getScore(GetScoreRequest request, StreamObserver<GetScoreResponse> responseObserver) {
 
-        int newId = request.getName().charAt(0) % MAX_PLAYERS;
+        int newId = request.getName().charAt(0) % MAX_PLAYERS + new Random().nextInt(10);
 
         System.out.println("Action service called - getScore()");
 
